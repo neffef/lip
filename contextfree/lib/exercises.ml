@@ -76,7 +76,7 @@ let balanced_parentheses : grammar =
 *)
 let same_amount : grammar = 
   {
-    symbols = [ S ];
+    symbols = [ S;  ];
     terminals = [ '0'; '1' ];
     productions =
       [
@@ -86,8 +86,6 @@ let same_amount : grammar =
         S --> "10S";
         S --> "1S0";
         S --> "S10";
-        S --> "0S0";
-        S --> "1S1";
         S --> ""
       ];
     start = S;
