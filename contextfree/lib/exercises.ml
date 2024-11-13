@@ -1,6 +1,6 @@
 open Types
 
-(* Use this grammar structure as a blueprint for the exercises. *)
+(* Use this grammar record as a blueprint for the exercises. *)
 let todo : grammar =
   {
     symbols = [ S; A; B];
@@ -71,9 +71,8 @@ let palindromes: grammar =
 
 (* #### Exercise 4, hard (same_amount)
 
-   Hint 1: you can use 'a' and 'b' for terminals.
-   Hint 2: think of the language of words where the number of 0s is one greater
-   than the number of 1s and viceversa, then combine them.
+   Hint: model the language of words where the number of 0's is
+   one greater than the number of 1's and viceversa, then combine them.
 *)
 let same_amount : grammar = 
   {

@@ -29,7 +29,7 @@ Recall the informal definition of a grammar, which is the product of the followi
 
 Context-free grammars can easily be formalized in OCaml with types only. We have defined these types in [lib/types.ml](lib/types.ml). You must not edit this file.
 
-Now, let's go over each type that makes up a grammar.
+Now let's go over each type that makes up a grammar.
 
 First, we need a few constructors to represent non-terminal symbols:
 ```ocaml
@@ -41,7 +41,7 @@ To represent terminal symbols we use the type `char`:
 type terminal = char
 ```
 
-A _sentential form_ is a word made up of a mixture of terminals and non-terminals. In OCaml, this sort of type can be achieved by composing a sum type and a list type.
+A _sentential form_ is a word made up of a mixture of terminals and non-terminals. In OCaml, this sort of datatype can be achieved by composing a sum type and a list type.
 
 ```ocaml
 type symbol_or_terminal = Symbol of symbol | Terminal of terminal
@@ -54,7 +54,7 @@ In a context-free grammar, a production maps a single non-terminal symbol to a s
 type production = symbol * sentential_form
 ```
 
-Now we have all the ingredients to describe a context free grammar to OCaml. We model this collection with a record type, using lists in place of sets:
+We now combine these types to describe a context free grammar to OCaml. We model this collection with a record type, using lists in place of sets:
 ```ocaml
 type grammar = {
   symbols : symbol list;
@@ -102,12 +102,14 @@ derive todo [1; 1; 0; 1; 0; 2];;
 ```
 
 Running this code in `dune utop` returns a list of terminals:
+Running this code in `dune utop` returns a list of terminals:
 
 ```ocaml
 [Terminal '1'; Terminal '1'; Terminal '0'; Terminal '1'; Terminal '0';
  Terminal '0'; Terminal '1'; Terminal '0'; Terminal '1'; Terminal '1']
 ```
 
+This can be quite hard to read, so we have provided an auxiliary function `string_of_sentform` to convert it to a string. You can apply it to the output of `derive` with the pipe `|>` operator:
 This can be quite hard to read, so we have provided an auxiliary function `string_of_sentform` to convert it to a string. You can apply it to the output of `derive` with the pipe `|>` operator:
 ```ocaml
 derive todo [1; 1; 0; 1; 0; 2] |> string_of_sentform;;
@@ -139,6 +141,8 @@ Generating words...
 
 To change the grammar that is processed, edit the `input_grammar` variable with the name of a grammar from the file [lib/exercises.ml](lib/exercises.ml) that you would like to test out. Since [bin/main.ml](bin/main.ml) imports the `Exercise` modules, VS Code should show a pop-up suggestion as you type the name of the grammar.
 
+To change the grammar that is processed, edit the `input_grammar` variable with the name of a grammar from the file [lib/exercises.ml](lib/exercises.ml) that you would like to test out. Since [bin/main.ml](bin/main.ml) imports the `Exercise` modules, VS Code should show a pop-up suggestion as you type the name of the grammar.
+
 
 ## Exercises
 
@@ -146,6 +150,7 @@ Your job in this project is to define a few grammars and test their behavior. Th
 
 In the file [lib/exercises.ml](lib/exercises.ml) there are four grammars that are missing a definition. Provide an appropriate definition for the required language of the task.
 
+Then, after defining each grammar, complete the tests in [lib/exercises.ml](lib/exercises.ml) and make sure they pass with:
 Then, after defining each grammar, complete the tests in [lib/exercises.ml](lib/exercises.ml) and make sure they pass with:
 
 ```
@@ -163,6 +168,7 @@ For each test, you need to write a sequence of productions that generates the st
 Define a grammar for the language `0^n1^n` (that is, `n` repetitions of the letter 0 followed by `n` repetitions of 1, for any `n`). Derive the following words: the empty word, `01`, `0^(10)1^(10)`.
 
 ### Exercise 2 (palindromes)
+Define a grammar for the language over {0,1} where every word is equal to its reverse, or, equivalently, any word can read the same backwards as forwards. Derive the following words: `11011`, `0110`, `011101110`.
 Define a grammar for the language over {0,1} where every word is equal to its reverse, or, equivalently, any word can read the same backwards as forwards. Derive the following words: `11011`, `0110`, `011101110`.
 
 ### Exercise 3 (balanced_parentheses)
