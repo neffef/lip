@@ -1,4 +1,3 @@
-
 {
   open Token
 }
@@ -32,3 +31,4 @@ rule read_token =
   | dtok {DTOK (Lexing.lexeme lexbuf)}  
   | etok {ETOK (Lexing.lexeme lexbuf)}
   | eof { EOF }
+

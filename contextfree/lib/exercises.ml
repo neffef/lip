@@ -3,13 +3,14 @@ open Types
 (* Use this grammar structure as a blueprint for the exercises. *)
 let todo : grammar =
   {
-    symbols = [ S ];
-    terminals = [ '0'; '1' ];
+    symbols = [ S; A; B];
+    terminals = [ 'a'; 'b'; 'c' ];
     productions =
       [
         S --> "0S0";
         S --> "1S1";
         S --> "";
+        A --> "0SA0"
       ];
     start = S;
   }
@@ -29,28 +30,11 @@ let zero_n_one_n : grammar =
   }
 
 
-(* #### Exercise 2, easy (palindromes) *)
-let palindromes : grammar = 
-  {
-    symbols = [ S ];
-    terminals = [ '0'; '1' ];
-    productions =
-      [
-        S --> "0S0";
-        S --> "1S1";
-        S --> "0";
-        S --> "1";
-        S --> ""
-      ];
-    start = S;
-  }
-
-
 (* #### Exercise 3, medium (balanced_parentheses)*)
 let balanced_parentheses : grammar = 
   {
     symbols = [ S ];
-    terminals = [ '('; ')' ; '{' ; '}'; '['; ']'];
+    terminals = [ '('; ')'; '['; ']'; '{'; '}' ];
     productions =
       [
         S --> "(S)";
@@ -68,6 +52,23 @@ let balanced_parentheses : grammar =
   }
 
 
+(* #### Exercise 2, easy (palindromes) *)
+let palindromes: grammar =
+  {
+    symbols = [ S ];
+    terminals = [ '0'; '1' ];
+    productions =
+      [
+        S --> "0S0";
+        S --> "1S1";
+        S --> "0";
+        S --> "1";
+        S --> "";
+      ];
+    start = S;
+  }
+
+
 (* #### Exercise 4, hard (same_amount)
 
    Hint 1: you can use 'a' and 'b' for terminals.
@@ -76,7 +77,7 @@ let balanced_parentheses : grammar =
 *)
 let same_amount : grammar = 
   {
-    symbols = [ S;  ];
+    symbols = [ S ];
     terminals = [ '0'; '1' ];
     productions =
       [
@@ -86,7 +87,7 @@ let same_amount : grammar =
         S --> "10S";
         S --> "1S0";
         S --> "S10";
-        S --> ""
+        S --> "";
       ];
     start = S;
   }

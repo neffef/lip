@@ -1,4 +1,3 @@
-
 type token =
   | LPAREN
   | RPAREN
@@ -31,3 +30,4 @@ let string_of_token = function
   | CTOK(s) -> "CTOK(" ^ s ^ ")"
   | DTOK(s) -> "DTOK(" ^ s ^ ")"
   | ETOK(s) -> "ETOK(" ^ s ^ ")"
+
